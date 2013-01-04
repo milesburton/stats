@@ -11,7 +11,7 @@
     <file path="/FTeams.groovy" changelist="db06ab17-5966-4134-8a43-5f2fda7a9412" time="1357258397105" ignored="false" />
     <file path="/DataSource.groovy" changelist="db06ab17-5966-4134-8a43-5f2fda7a9412" time="1357257485763" ignored="false" />
     <file path="$PROJECT_DIR$/target/stacktrace.log" changelist="db06ab17-5966-4134-8a43-5f2fda7a9412" time="1357258860057" ignored="false" />
-    <file path="$PROJECT_DIR$/test/unit/com/mb/domain/FUsersControllerTests.groovy" changelist="db06ab17-5966-4134-8a43-5f2fda7a9412" time="1357258865806" ignored="false" />
+    <file path="$PROJECT_DIR$/test/unit/com/mb/domain/FUsersControllerTests.groovy" changelist="db06ab17-5966-4134-8a43-5f2fda7a9412" time="1357258921593" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,7 @@
       <file leaf-file-name="FUsers.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/domain/com/mb/domain/FUsers.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="67" selection-start="214" selection-end="214" vertical-scroll-proportion="0.192">
+            <state line="9" column="67" selection-start="214" selection-end="214" vertical-scroll-proportion="0.12552302">
               <folding />
             </state>
           </provider>
@@ -495,7 +495,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1922" height="1153" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -507,7 +507,7 @@
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32935324" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935324" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -698,7 +698,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="67" selection-start="214" selection-end="214" vertical-scroll-proportion="0.192">
+        <state line="9" column="67" selection-start="214" selection-end="214" vertical-scroll-proportion="0.12552302">
           <folding />
         </state>
       </provider>
