@@ -5,9 +5,11 @@ hibernate {
 }
 
 dataSource {
-    dbCreate = "update"
+    dbCreate = "validate"
     driverClassName = "org.postgresql.Driver"
     dialect = org.hibernate.dialect.PostgreSQLDialect
+
+    readOnly = true
 
     uri = new URI(System.env.DATABASE_URL ?: "postgres://stats:stats@cvps2.agileview.co.uk/stats")
 
