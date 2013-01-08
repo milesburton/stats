@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/statistics-2013.iml" filepath="$PROJECT_DIR$/statistics-2013.iml" />
-      <module fileurl="file://$PROJECT_DIR$/statistics-2013-grailsPlugins.iml" filepath="$PROJECT_DIR$/statistics-2013-grailsPlugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stats-site.iml" filepath="$PROJECT_DIR$/stats-site.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stats-site-grailsPlugins.iml" filepath="$PROJECT_DIR$/stats-site-grailsPlugins.iml" />
     </modules>
   </component>
 </project>
