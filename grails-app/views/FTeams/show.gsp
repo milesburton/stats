@@ -41,6 +41,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${FTeamsInstance?.ptsDay}">
+				<li class="fieldcontain">
+					<span id="ptsDay-label" class="property-label"><g:message code="FTeams.ptsDay.label" default="Pts Day" /></span>
+					
+						<span class="property-value" aria-labelledby="ptsDay-label"><g:fieldValue bean="${FTeamsInstance}" field="ptsDay"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${FTeamsInstance?.ptsDelta}">
 				<li class="fieldcontain">
 					<span id="ptsDelta-label" class="property-label"><g:message code="FTeams.ptsDelta.label" default="Pts Delta" /></span>
@@ -55,6 +64,15 @@
 					<span id="ptsTotal-label" class="property-label"><g:message code="FTeams.ptsTotal.label" default="Pts Total" /></span>
 					
 						<span class="property-value" aria-labelledby="ptsTotal-label"><g:fieldValue bean="${FTeamsInstance}" field="ptsTotal"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${FTeamsInstance?.ptsWeek}">
+				<li class="fieldcontain">
+					<span id="ptsWeek-label" class="property-label"><g:message code="FTeams.ptsWeek.label" default="Pts Week" /></span>
+					
+						<span class="property-value" aria-labelledby="ptsWeek-label"><g:fieldValue bean="${FTeamsInstance}" field="ptsWeek"/></span>
 					
 				</li>
 				</g:if>

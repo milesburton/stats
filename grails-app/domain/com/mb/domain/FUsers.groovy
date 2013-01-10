@@ -16,6 +16,8 @@ class FUsers implements  Serializable {
 	Long timestamp
 	Long rankTeam
 	Long rankTeamDelta
+    Long ptsDay
+    Long ptsWeek
 
     static mapping = {
         version false

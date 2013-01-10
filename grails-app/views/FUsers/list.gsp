@@ -26,15 +26,15 @@
 					
 						<g:sortableColumn property="alias" title="${message(code: 'FUsers.alias.label', default: 'Alias')}" />
 					
+						<g:sortableColumn property="ptsDay" title="${message(code: 'FUsers.ptsDay.label', default: 'Pts Day')}" />
+					
 						<g:sortableColumn property="ptsDelta" title="${message(code: 'FUsers.ptsDelta.label', default: 'Pts Delta')}" />
 					
 						<g:sortableColumn property="ptsTotal" title="${message(code: 'FUsers.ptsTotal.label', default: 'Pts Total')}" />
 					
+						<g:sortableColumn property="ptsWeek" title="${message(code: 'FUsers.ptsWeek.label', default: 'Pts Week')}" />
+					
 						<g:sortableColumn property="rank" title="${message(code: 'FUsers.rank.label', default: 'Rank')}" />
-					
-						<g:sortableColumn property="rankDelta" title="${message(code: 'FUsers.rankDelta.label', default: 'Rank Delta')}" />
-					
-						<g:sortableColumn property="rankTeam" title="${message(code: 'FUsers.rankTeam.label', default: 'Rank Team')}" />
 					
 					</tr>
 				</thead>
@@ -44,15 +44,15 @@
 					
 						<td><g:link action="show" id="${FUsersInstance.id}">${fieldValue(bean: FUsersInstance, field: "alias")}</g:link></td>
 					
+						<td>${fieldValue(bean: FUsersInstance, field: "ptsDay")}</td>
+					
 						<td>${fieldValue(bean: FUsersInstance, field: "ptsDelta")}</td>
 					
 						<td>${fieldValue(bean: FUsersInstance, field: "ptsTotal")}</td>
 					
+						<td>${fieldValue(bean: FUsersInstance, field: "ptsWeek")}</td>
+					
 						<td>${fieldValue(bean: FUsersInstance, field: "rank")}</td>
-					
-						<td>${fieldValue(bean: FUsersInstance, field: "rankDelta")}</td>
-					
-						<td>${fieldValue(bean: FUsersInstance, field: "rankTeam")}</td>
 					
 					</tr>
 				</g:each>

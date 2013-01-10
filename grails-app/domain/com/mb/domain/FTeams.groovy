@@ -11,6 +11,8 @@ class FTeams implements  Serializable{
 	Long rank
 	Long rankDelta
 	Long timestamp
+    Long ptsDay
+    Long ptsWeek
 
     static mapping = {
         version false

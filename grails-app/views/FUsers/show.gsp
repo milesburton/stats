@@ -32,6 +32,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${FUsersInstance?.ptsDay}">
+				<li class="fieldcontain">
+					<span id="ptsDay-label" class="property-label"><g:message code="FUsers.ptsDay.label" default="Pts Day" /></span>
+					
+						<span class="property-value" aria-labelledby="ptsDay-label"><g:fieldValue bean="${FUsersInstance}" field="ptsDay"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${FUsersInstance?.ptsDelta}">
 				<li class="fieldcontain">
 					<span id="ptsDelta-label" class="property-label"><g:message code="FUsers.ptsDelta.label" default="Pts Delta" /></span>
@@ -46,6 +55,15 @@
 					<span id="ptsTotal-label" class="property-label"><g:message code="FUsers.ptsTotal.label" default="Pts Total" /></span>
 					
 						<span class="property-value" aria-labelledby="ptsTotal-label"><g:fieldValue bean="${FUsersInstance}" field="ptsTotal"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${FUsersInstance?.ptsWeek}">
+				<li class="fieldcontain">
+					<span id="ptsWeek-label" class="property-label"><g:message code="FUsers.ptsWeek.label" default="Pts Week" /></span>
+					
+						<span class="property-value" aria-labelledby="ptsWeek-label"><g:fieldValue bean="${FUsersInstance}" field="ptsWeek"/></span>
 					
 				</li>
 				</g:if>

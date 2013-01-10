@@ -18,6 +18,14 @@
 	<g:field name="timestamp" type="number" value="${FTeamsInstance.timestamp}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: FTeamsInstance, field: 'ptsDay', 'error')} required">
+	<label for="ptsDay">
+		<g:message code="FTeams.ptsDay.label" default="Pts Day" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="ptsDay" type="number" value="${FTeamsInstance.ptsDay}" required=""/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: FTeamsInstance, field: 'ptsDelta', 'error')} required">
 	<label for="ptsDelta">
 		<g:message code="FTeams.ptsDelta.label" default="Pts Delta" />
@@ -32,6 +40,14 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="ptsTotal" type="number" value="${FTeamsInstance.ptsTotal}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: FTeamsInstance, field: 'ptsWeek', 'error')} required">
+	<label for="ptsWeek">
+		<g:message code="FTeams.ptsWeek.label" default="Pts Week" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="ptsWeek" type="number" value="${FTeamsInstance.ptsWeek}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: FTeamsInstance, field: 'rank', 'error')} required">

@@ -10,6 +10,14 @@
 	<g:textField name="alias" maxlength="199" value="${FUsersInstance?.alias}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: FUsersInstance, field: 'ptsDay', 'error')} required">
+	<label for="ptsDay">
+		<g:message code="FUsers.ptsDay.label" default="Pts Day" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="ptsDay" type="number" value="${FUsersInstance.ptsDay}" required=""/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: FUsersInstance, field: 'ptsDelta', 'error')} required">
 	<label for="ptsDelta">
 		<g:message code="FUsers.ptsDelta.label" default="Pts Delta" />
@@ -24,6 +32,14 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="ptsTotal" type="number" value="${FUsersInstance.ptsTotal}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: FUsersInstance, field: 'ptsWeek', 'error')} required">
+	<label for="ptsWeek">
+		<g:message code="FUsers.ptsWeek.label" default="Pts Week" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="ptsWeek" type="number" value="${FUsersInstance.ptsWeek}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: FUsersInstance, field: 'rank', 'error')} required">
