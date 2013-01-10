@@ -1,6 +1,9 @@
 package com.mb.domain
 
-class FTeams implements  Serializable{
+import org.apache.commons.lang.builder.EqualsBuilder
+import org.apache.commons.lang.builder.HashCodeBuilder
+
+class User implements  Serializable {
 
 	Long teamId
 	String alias
@@ -10,20 +13,18 @@ class FTeams implements  Serializable{
 	Long wuDelta
 	Long rank
 	Long rankDelta
-	Long timestamp
+	Long rankTeam
+	Long rankTeamDelta
     Long ptsDay
     Long ptsWeek
 
     static mapping = {
         version false
-        table 'f_teams'
-        id name: 'teamId' , generator: 'assigned'
-
-
+        table 'sers'
+        id composite: ['alias', 'teamId']
     }
 
 	static constraints = {
 		alias maxSize: 199
-		timestamp nullable: true
 	}
 }
