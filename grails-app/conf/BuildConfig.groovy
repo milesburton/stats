@@ -34,7 +34,11 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-        runtime 'postgresql:postgresql:8.4-702.jdbc3'
+        runtime 'postgresql:postgresql:8.4-702.jdbc3',
+                'com.google.code.gson:gson:2.2.2'
+
+
+        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }
 
     plugins {
@@ -50,5 +54,9 @@ grails.project.dependency.resolution = {
         build ":tomcat:$grailsVersion"
 
         compile ':cache:1.0.0'
+
+        test(":spock:0.7") {
+            exclude "spock-grails-support"
+        }
     }
 }
