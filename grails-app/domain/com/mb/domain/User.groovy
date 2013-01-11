@@ -20,7 +20,7 @@ class User implements  Serializable {
 
     static mapping = {
         version false
-        table 'sers'
+        table 'users'
         id composite: ['alias', 'teamId']
     }
 
