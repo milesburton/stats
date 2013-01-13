@@ -37,6 +37,8 @@ grails.project.dependency.resolution = {
         runtime 'postgresql:postgresql:8.4-702.jdbc3',
                 'com.google.code.gson:gson:2.2.2'
 
+      //  compile ":newrelic:0.5"
+
 
         test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }

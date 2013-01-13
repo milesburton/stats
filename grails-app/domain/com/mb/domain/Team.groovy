@@ -1,5 +1,10 @@
 package com.mb.domain
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString
+@EqualsAndHashCode
 class Team implements  Serializable{
 
 	Long teamId
