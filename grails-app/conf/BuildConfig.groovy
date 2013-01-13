@@ -1,4 +1,4 @@
-grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
+grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -15,6 +15,9 @@ grails.project.dependency.resolution = {
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
 
+    def gebVersion = "0.9.0-SNAPSHOT"
+    def seleniumVersion = "2.21.0"
+
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
 
@@ -24,6 +27,9 @@ grails.project.dependency.resolution = {
 
         mavenLocal()
         mavenCentral()
+
+        mavenRepo 'http://artifactory.milesburton.com/artifactory/public'
+        mavenRepo 'https://oss.sonatype.org/content/repositories/snapshots/'
 
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
@@ -37,10 +43,20 @@ grails.project.dependency.resolution = {
         runtime 'postgresql:postgresql:8.4-702.jdbc3',
                 'com.google.code.gson:gson:2.2.2'
 
-      //  compile ":newrelic:0.5"
+        //  compile ":newrelic:0.5"
+
+        test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
+            exclude "xml-apis"
+        }
+        test("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion")
+        test("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
 
 
-        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+        test "org.spockframework:spock-grails-support:0.7-groovy-2.0",
+                "org.gebish:geb-spock:$gebVersion"
+
+        test('com.popcornteam:restclient:1.0.130113.1729')
+
     }
 
     plugins {
@@ -60,5 +76,7 @@ grails.project.dependency.resolution = {
         test(":spock:0.7") {
             exclude "spock-grails-support"
         }
+
+        test ":geb:$gebVersion"
     }
 }

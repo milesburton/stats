@@ -15,18 +15,18 @@ grails.project.groupId = appName // change this to alter the default package nam
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [
-    all:           '*/*',
-    atom:          'application/atom+xml',
-    css:           'text/css',
-    csv:           'text/csv',
-    form:          'application/x-www-form-urlencoded',
-    html:          ['text/html','application/xhtml+xml'],
-    js:            'text/javascript',
-    json:          ['application/json', 'text/json'],
-    multipartForm: 'multipart/form-data',
-    rss:           'application/rss+xml',
-    text:          'text/plain',
-    xml:           ['text/xml', 'application/xml']
+        all: '*/*',
+        atom: 'application/atom+xml',
+        css: 'text/css',
+        csv: 'text/csv',
+        form: 'application/x-www-form-urlencoded',
+        html: ['text/html', 'application/xhtml+xml'],
+        js: 'text/javascript',
+        json: ['application/json', 'text/json'],
+        multipartForm: 'multipart/form-data',
+        rss: 'application/rss+xml',
+        text: 'text/plain',
+        xml: ['text/xml', 'application/xml']
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -51,13 +51,16 @@ grails.enable.native2ascii = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 // whether to disable processing of multi part requests
-grails.web.disable.multipart=false
+grails.web.disable.multipart = false
 
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
+
+disable.auto.recompile=false
+grails.gsp.enable.reload=true
 
 environments {
     development {
@@ -77,17 +80,17 @@ log4j = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+    error 'org.codehaus.groovy.grails.web.servlet',        // controllers
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
 }
 
 environments {
@@ -106,8 +109,8 @@ environments {
         log4j = {
             appenders {
                 // set up a log file in the standard tomcat area; be sure to use .toString() with ${}
-                rollingFile name:'tomcatLog', file:"${logDirectory}/${appName}.log".toString(), maxFileSize:'100KB'
-                'null' name:'stacktrace'
+                rollingFile name: 'tomcatLog', file: "${logDirectory}/${appName}.log".toString(), maxFileSize: '100KB'
+                'null' name: 'stacktrace'
             }
 
             root {
@@ -117,7 +120,7 @@ environments {
             }
 
             // example for sending stacktraces to my tomcatLog file
-            error tomcatLog:'StackTrace'
+            error tomcatLog: 'StackTrace'
 
             // set level for my messages; this uses the root logger (and thus the tomcatLog file)
             info 'grails.app'
@@ -125,8 +128,26 @@ environments {
     }
 }
 
+stats {
 
-grails.plugin.reveng.packageName = 'com.mb.domain'
-grails.plugin.reveng.versionColumns = [other: 'nonstandard_version_name']
-grails.plugin.reveng.manyToManyTables = []
-grails.plugin.reveng.manyToManyBelongsTos = []
+    teams {
+        order {
+            options = ['asc', 'desc']
+            defaultValue = 'desc'
+        }
+
+        sort {
+            options = ["teamId", "alias", "ptsTotal", "ptsDelta", "wuTotal", "wuDelta", "rank", "rankDelta", "ptsDay", "ptsWeek"]
+            defaultValue = "ptsTotal"
+        }
+
+        offset  {
+            defaultValue = 0
+        }
+        limit {
+            defaultValue = 50
+            min = 1
+            max = 1000
+        }
+    }
+}

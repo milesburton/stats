@@ -1,4 +1,4 @@
-package com.mb.domain
+package com.mb.stats.domain
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
@@ -22,11 +22,7 @@ class Team implements  Serializable{
         version false
         table 'teams'
         id name: 'teamId' , generator: 'assigned'
-
+        cache true
 
     }
-
-	static constraints = {
-		alias maxSize: 199
-	}
 }

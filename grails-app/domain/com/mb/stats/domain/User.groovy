@@ -1,9 +1,7 @@
-package com.mb.domain
+package com.mb.stats.domain
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-import org.apache.commons.lang.builder.EqualsBuilder
-import org.apache.commons.lang.builder.HashCodeBuilder
 
 @ToString
 @EqualsAndHashCode
@@ -26,6 +24,7 @@ class User implements  Serializable {
         version false
         table 'users'
         id composite: ['alias', 'teamId']
+        cache true
     }
 
 	static constraints = {

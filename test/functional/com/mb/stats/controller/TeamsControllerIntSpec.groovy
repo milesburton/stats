@@ -1,49 +1,57 @@
-package com.mb.domain
+package com.mb.stats.controller
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import spock.lang.Specification
+import com.mb.stats.domain.Team
+import com.popcornteam.restclient.RestClient
+import com.popcornteam.restclient.factory.HttpClientFactory
+import com.popcornteam.restclient.response.RestResponse
+import geb.spock.GebSpec
+import grails.converters.JSON
+import org.apache.http.client.HttpClient
 import spock.lang.Unroll
 
 import java.lang.reflect.Type
 
-import grails.test.mixin.*
+class TeamsControllerIntSpec extends GebSpec {
 
-@Mock(Team)
-@TestFor(TeamsController)
-class TeamsControllerSpec extends Specification {
+    RestClient jsonClient
+    def fixtures
 
-    List<Team> fixtures
+    void setup() {
+        HttpClientFactory httpClientFactory = new HttpClientFactory()
+        HttpClient httpClient = httpClientFactory.makeThreadSafeHttpClient(2)
 
-    def setup() {
-        fixtures = createFixtureList()
+        jsonClient = new RestClient(baseUrl, [], httpClient)
+
+        createFixturesList(100)
     }
 
     def "list"() {
 
         when:
-        controller.index()
+        RestResponse r = jsonClient.get('teams')
 
         then:
-        toTeams(response.contentAsString) == fixtures[0..49]
+        def j = JSON.parse r.bodyAsString
+        j.total == 100
+        j.results == fixtures[0..49]
     }
 
     @Unroll
     def "list sort by #sort #order"() {
 
         given:
-        params.sort = sort
-        params.order = order
-
-        and:
         fixtures.sort { it.hasProperty(sort) ? it."${sort}" : it.ptsTotal }
         order != "asc" ? fixtures.reverse(true) : ''
 
         when:
-        controller.index()
+        RestResponse r = jsonClient.get("teams?sort=$sort&order=$order")
 
         then:
-        toTeams(response.contentAsString) == fixtures[0..49]
+        def j = JSON.parse r.bodyAsString
+        j.total == 100
+        j.results == fixtures[0..49]
 
         where:
         sort        | order
@@ -76,17 +84,15 @@ class TeamsControllerSpec extends Specification {
     def "list illegal offset #offset and limit #limit"() {
 
         given:
-        fixtures = createFixtureList(2000)
-
-        and:
-        params.offset = offset
-        params.limit = limit
+        createFixturesList(1010)
 
         when:
-        controller.index()
+        RestResponse r = jsonClient.get("teams?limit=$limit&offset=$offset")
 
         then:
-        toTeams(response.contentAsString) == fixtures[expectedOffset..(expectedLimit - 1)]
+        def j = JSON.parse r.bodyAsString
+        j.total == 1010
+        j.results == fixtures[expectedOffset..(expectedLimit - 1)]
 
         where:
         offset | expectedOffset | limit | expectedLimit
@@ -99,15 +105,13 @@ class TeamsControllerSpec extends Specification {
     @Unroll
     def "list offset #offset and limit #limit"() {
 
-        given:
-        params.offset = offset
-        params.limit = limit
-
         when:
-        controller.index()
+        RestResponse r = jsonClient.get("teams?limit=$limit&offset=$offset")
 
         then:
-        toTeams(response.contentAsString) == fixtures[offset..offset + (limit - 1)]
+        def j = JSON.parse r.bodyAsString
+        j.total == 100
+        j.results == fixtures[offset..offset + (limit - 1)]
 
         where:
         offset | limit
@@ -123,39 +127,7 @@ class TeamsControllerSpec extends Specification {
         50     | 10
     }
 
-    def toTeams(String j) {
-
-        Type listType = new TypeToken<ArrayList<Team>>() {
-        }.getType();
-
-        new Gson().fromJson(j, listType)
-    }
-
-
-    def createFixtureList(int count = 100) {
-
-        def fixtures = []
-
-        for (int i = 0; i < count; i++) {
-            fixtures.add new Team(
-                    teamId: i,
-                    alias: "team " + Character.toChars(Math.abs(new Random().nextInt() % 26) + 65) + " $i ",
-                    ptsTotal: i,
-                    ptsDelta: i,
-                    wuTotal: i,
-                    wuDelta: i,
-                    rank: i,
-                    rankDelta: i,
-                    ptsDay: i,
-                    ptsWeek: i,
-            )
-
-        }
-
-        fixtures.sort { it.ptsTotal }
-        fixtures.reverse(true)
-        fixtures*.save(flush: true)
-
-        fixtures
+    private void createFixturesList(int count) {
+        fixtures = JSON.parse jsonClient.get("fixture/teams?count=$count").bodyAsString
     }
 }
