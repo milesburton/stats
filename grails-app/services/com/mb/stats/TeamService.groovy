@@ -1,7 +1,6 @@
 package com.mb.stats
 
 import com.mb.stats.domain.Team
-import grails.orm.PagedResultList
 
 class TeamService {
 

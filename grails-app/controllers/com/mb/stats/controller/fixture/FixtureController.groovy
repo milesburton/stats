@@ -1,4 +1,4 @@
-package com.mb.stats.controller
+package com.mb.stats.controller.fixture
 
 import com.mb.stats.domain.Team
 import grails.converters.JSON
