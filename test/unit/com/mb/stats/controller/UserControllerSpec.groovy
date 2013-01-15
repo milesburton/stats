@@ -1,24 +1,24 @@
 package com.mb.stats.controller
 
 import com.mb.stats.ListParamSanitizerService
-
 import com.mb.stats.TeamService
+import com.mb.stats.UserService
 import grails.gorm.PagedResultList
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
-@TestFor(TeamsController)
-class TeamsControllerSpec extends Specification {
+@TestFor(UsersController)
+class UserControllerSpec extends Specification {
 
     PagedResultList fakeResult
 
     def setup() {
-        controller.teamService = Mock(TeamService)
+        controller.userService = Mock(UserService)
         controller.listParamSanitizerService = Mock(ListParamSanitizerService)
 
         fakeResult = new FakePagedResultList()
 
-        config.stats.teams = [:]
+        config.stats.users = [:]
     }
 
     def 'search'() {
@@ -26,9 +26,10 @@ class TeamsControllerSpec extends Specification {
         given:
         Map params = [:]
         String q = "search"
+        int teamId = 62
 
         when:
-        controller.search(q)
+        controller.search(teamId, q)
 
         then:
         response.json == [
@@ -38,7 +39,7 @@ class TeamsControllerSpec extends Specification {
 
         and:
         1 * controller.listParamSanitizerService.sanitizePaginationParams(params, [:])
-        1 * controller.teamService.search(q, params) >> fakeResult
+        1 * controller.userService.search(teamId, q, params) >> fakeResult
         0 * _._
     }
 

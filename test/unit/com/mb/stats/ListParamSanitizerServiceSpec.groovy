@@ -3,11 +3,10 @@ package com.mb.stats
 
 
 import grails.test.mixin.*
-import org.junit.*
 import spock.lang.Specification
 
-@TestFor(TeamParamSanitizerService)
-class TeamParamSanitizerServiceSpec extends Specification {
+@TestFor(ListParamSanitizerService)
+class ListParamSanitizerServiceSpec extends Specification {
 
 
     final String OPTIONS_ASC = "asc"
@@ -44,7 +43,7 @@ class TeamParamSanitizerServiceSpec extends Specification {
         Map params = [:]
 
         when:
-        service.sanitizePaginationParams(params)
+        service.sanitizePaginationParams(params, config.stats.teams)
 
         then:
         params == [
@@ -76,7 +75,7 @@ class TeamParamSanitizerServiceSpec extends Specification {
         ]
 
         when:
-        service.sanitizePaginationParams(params)
+        service.sanitizePaginationParams(params, config.stats.teams)
 
         then:
         params == [

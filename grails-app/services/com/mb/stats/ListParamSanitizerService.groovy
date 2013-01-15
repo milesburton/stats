@@ -1,11 +1,10 @@
 package com.mb.stats
 
-class TeamParamSanitizerService {
+class ListParamSanitizerService {
 
-    def grailsApplication
     def numberService
 
-    void sanitizePaginationParams(Map params) {
+    void sanitizePaginationParams(Map params, Map config) {
 
         params.offset = numberService.applyDefault(params.offset, config.offset.defaultValue)
         params.offset = Math.max(params.offset, config.offset.defaultValue)
@@ -22,8 +21,6 @@ class TeamParamSanitizerService {
     }
 
 
-    private def getConfig() {
-        grailsApplication.config.stats.teams
-    }
+
 
 }

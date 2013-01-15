@@ -1,54 +1,52 @@
 package com.mb.stats.controller
 
-import com.mb.stats.TeamParamSanitizerService
+import com.mb.stats.ListParamSanitizerService
+
 import com.mb.stats.TeamService
 import grails.converters.JSON
 
 class TeamsController {
 
-    TeamParamSanitizerService teamParamSanitizerService
+    ListParamSanitizerService listParamSanitizerService
     TeamService teamService
 
     def index() {
 
-        teamParamSanitizerService.sanitizePaginationParams(params)
+        listParamSanitizerService.sanitizePaginationParams(params, config)
 
-        renderList teamService.list(params)
+        render asTeamsList(teamService.list(params))
     }
 
     def search(String q) {
 
-        teamParamSanitizerService.sanitizePaginationParams(params)
+        listParamSanitizerService.sanitizePaginationParams(params, config)
 
-        renderList teamService.search(q, params)
+        render asTeamsList(teamService.search(q, params))
     }
 
+    private Map getConfig() {
+        grailsApplication.config.stats.teams
+    }
 
-    private void renderList(def list) {
+    private def asTeamsList(def list) {
 
-        def j = [
+        [
                 total: list.totalCount,
-                results: asResults(list)
-        ]
-        render j as JSON
-    }
+                results: list.collect {
+                    [
+                            teamId: it.teamId,
+                            alias: it.alias,
+                            ptsTotal: it.ptsTotal,
+                            ptsDelta: it.ptsDelta,
+                            wuTotal: it.wuTotal,
+                            rank: it.rank,
+                            rankDelta: it.rankDelta,
+                            ptsDay: it.ptsDay,
+                            ptsWeek: it.ptsWeek
+                    ]
 
-    private List asResults(def list){
-
-        list.collect {
-            [
-                    teamId: it.teamId,
-                    alias: it.alias,
-                    ptsTotal: it.ptsTotal,
-                    ptsDelta: it.ptsDelta,
-                    wuTotal: it.wuTotal,
-                    rank: it.rank,
-                    rankDelta: it.rankDelta,
-                    ptsDay: it.ptsDay,
-                    ptsWeek: it.ptsWeek
-            ]
-
-        }
+                }
+        ] as JSON
     }
 
 }
