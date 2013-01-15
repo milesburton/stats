@@ -10,6 +10,16 @@ class FixtureController {
         render createFixtureList(params.count.toInteger()) as JSON
     }
 
+    def customTeams(){
+
+        deleteAllTeams()
+
+        def fixtures = request.JSON.collect { new Team(it) }
+        fixtures*.save(flush:true)
+
+        render asResults(fixtures) as JSON
+    }
+
     private def createFixtureList(int count = 100) {
 
         def fixtures = []
@@ -30,13 +40,17 @@ class FixtureController {
 
         }
 
-        Team.executeUpdate("DELETE Team")
+        deleteAllTeams()
 
         fixtures.sort { it.ptsTotal }
         fixtures.reverse(true)
         fixtures*.save(flush:true)
 
         asResults fixtures
+    }
+
+    private void deleteAllTeams() {
+        Team.executeUpdate("DELETE Team")
     }
 
     private List asResults(def list){

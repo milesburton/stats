@@ -26,26 +26,4 @@ class TeamServiceSpec extends Specification {
         mockTeam.verify() == null
     }
 
-    def 'search'() {
-
-        given:
-        Map params = [offset: 0, limit: 0, sort: "sort", order: "order"]
-        String q = "query"
-        List fakeResults = []
-
-        and:
-        def mockTeam = mockFor(Team)
-
-        mockTeam.demand.static.findAllByAliasLike(1) { String term, Map args ->
-            if (args != [offset: 0, max: 0, sort: "sort", order: "order", cache: true] &&
-                    term == q
-            ) throw new Exception("Failed test")
-            fakeResults
-        }
-
-        expect:
-        service.search(q, params) == fakeResults
-        mockTeam.verify() == null
-    }
-
 }

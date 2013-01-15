@@ -9,6 +9,8 @@ class TeamService {
     }
 
     def search(String q, Map params) {
-        Team.findAllByAliasLike(q, [offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true])
+        Team.createCriteria().list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true){
+            like('alias', "$q%")
+        }
     }
 }
