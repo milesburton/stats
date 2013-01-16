@@ -25,11 +25,15 @@ grails.project.dependency.resolution = {
         grailsHome()
         grailsCentral()
 
-        mavenLocal()
+       // mavenLocal()
         mavenCentral()
 
+        mavenRepo 'http://artifactory.milesburton.com/artifactory/remote-repos'
         mavenRepo 'http://artifactory.milesburton.com/artifactory/public'
+
         mavenRepo 'https://oss.sonatype.org/content/repositories/snapshots/'
+
+
 
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"

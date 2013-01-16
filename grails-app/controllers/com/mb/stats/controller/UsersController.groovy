@@ -12,10 +12,40 @@ class UsersController {
 
     def index() {
 
-        render User.list(offset:10, max:20) as JSON
+        listParamSanitizerService.sanitizePaginationParams(params, config)
+
+        render asTeamsList(userService.list(params))
     }
 
     def search(int teamId, String q) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+
+        listParamSanitizerService.sanitizePaginationParams(params, config)
+
+        render asTeamsList(userService.search(teamId, q, params))
+    }
+
+    private Map getConfig() {
+        grailsApplication.config.stats.teams
+    }
+
+    private def asTeamsList(def list) {
+
+        [
+                total: list.totalCount,
+                results: list.collect {
+                    [
+                            teamId: it.teamId,
+                            alias: it.alias,
+                            ptsTotal: it.ptsTotal,
+                            ptsDelta: it.ptsDelta,
+                            wuTotal: it.wuTotal,
+                            rank: it.rank,
+                            rankDelta: it.rankDelta,
+                            ptsDay: it.ptsDay,
+                            ptsWeek: it.ptsWeek
+                    ]
+
+                }
+        ] as JSON
     }
 }

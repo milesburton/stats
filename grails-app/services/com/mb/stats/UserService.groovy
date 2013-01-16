@@ -1,7 +1,15 @@
 package com.mb.stats
 
+import com.mb.stats.domain.User
+
 class UserService {
-    def search(int teamId, String q, LinkedHashMap params) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+    def list(int teamId, Map params) {
+        User.list(teamId: teamId, offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true)
+    }
+
+    def search(int teamId, String q, Map params) {
+        User.createCriteria().list(teamId: teamId, offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true){
+            like('alias', "$q%")
+        }
     }
 }
