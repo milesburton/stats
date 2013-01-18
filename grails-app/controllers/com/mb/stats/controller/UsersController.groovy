@@ -10,25 +10,32 @@ class UsersController {
     UserService userService
     ListParamSanitizerService listParamSanitizerService
 
-    def index() {
+    def list() {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
-        render asTeamsList(userService.list(params))
+        render asUsersList(userService.list(params))
     }
 
-    def search(int teamId, String q) {
+    def listForTeam(int teamId) {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
-        render asTeamsList(userService.search(teamId, q, params))
+        render asUsersList(userService.listForTeam(teamId, params))
+    }
+
+    def search(String q) {
+
+        listParamSanitizerService.sanitizePaginationParams(params, config)
+
+        render asUsersList(userService.search(q, params))
     }
 
     private Map getConfig() {
-        grailsApplication.config.stats.teams
+        grailsApplication.config.stats.users
     }
 
-    private def asTeamsList(def list) {
+    private def asUsersList(def list) {
 
         [
                 total: list.totalCount,

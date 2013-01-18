@@ -26,10 +26,9 @@ class UserControllerSpec extends Specification {
         given:
         Map params = [:]
         String q = "search"
-        int teamId = 62
 
         when:
-        controller.search(teamId, q)
+        controller.search(q)
 
         then:
         response.json == [
@@ -39,7 +38,7 @@ class UserControllerSpec extends Specification {
 
         and:
         1 * controller.listParamSanitizerService.sanitizePaginationParams(params, [:])
-        1 * controller.userService.search(teamId, q, params) >> fakeResult
+        1 * controller.userService.search(q, params) >> fakeResult
         0 * _._
     }
 
@@ -49,7 +48,7 @@ class UserControllerSpec extends Specification {
         Map params = [:]
 
         when:
-        controller.index()
+        controller.list()
 
         then:
         response.json == [
@@ -59,7 +58,28 @@ class UserControllerSpec extends Specification {
 
         and:
         1 * controller.listParamSanitizerService.sanitizePaginationParams(params, [:])
-        1 * controller.teamService.list(params) >> fakeResult
+        1 * controller.userService.list(params) >> fakeResult
+        0 * _._
+    }
+
+    def 'users in teams'() {
+
+        given:
+        Map params = [:]
+        int teamId = 62
+
+        when:
+        controller.listForTeam(teamId)
+
+        then:
+        response.json == [
+                total: 0,
+                results: []
+        ]
+
+        and:
+        1 * controller.listParamSanitizerService.sanitizePaginationParams(params, [:])
+        1 * controller.userService.listForTeam(teamId, params) >> fakeResult
         0 * _._
     }
 }

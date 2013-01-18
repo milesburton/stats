@@ -31,7 +31,7 @@ grails.project.dependency.resolution = {
         mavenRepo 'http://artifactory.milesburton.com/artifactory/remote-repos'
         mavenRepo 'http://artifactory.milesburton.com/artifactory/public'
 
-        mavenRepo 'https://oss.sonatype.org/content/repositories/snapshots/'
+        mavenRepo 'http://oss.sonatype.org/content/repositories/snapshots/'
 
 
 
