@@ -42,13 +42,13 @@ class TeamsControllerSpec extends Specification {
         0 * _._
     }
 
-    def 'index'() {
+    def 'list'() {
 
         given:
         Map params = [:]
 
         when:
-        controller.index()
+        controller.list()
 
         then:
         response.json == [

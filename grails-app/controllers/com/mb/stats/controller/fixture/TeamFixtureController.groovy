@@ -3,14 +3,14 @@ package com.mb.stats.controller.fixture
 import com.mb.stats.domain.Team
 import grails.converters.JSON
 
-class FixtureController {
+class TeamFixtureController {
 
-    def teams() {
+    def create() {
 
         render createFixtureList(params.count.toInteger()) as JSON
     }
 
-    def customTeams(){
+    def custom(){
 
         deleteAllTeams()
 

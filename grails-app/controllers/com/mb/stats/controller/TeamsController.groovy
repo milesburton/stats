@@ -10,7 +10,7 @@ class TeamsController {
     ListParamSanitizerService listParamSanitizerService
     TeamService teamService
 
-    def index() {
+    def list() {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 

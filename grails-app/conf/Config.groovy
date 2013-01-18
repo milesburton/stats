@@ -150,4 +150,25 @@ stats {
             max = 1000
         }
     }
+
+    users {
+        order {
+            options = ['asc', 'desc']
+            defaultValue = 'desc'
+        }
+
+        sort {
+            options = ["teamId", "alias", "ptsTotal", "ptsDelta", "wuTotal", "wuDelta", "rank", "rankDelta", "ptsDay", "ptsWeek", "rankTeam", "rankTeamDelta"]
+            defaultValue = "ptsTotal"
+        }
+
+        offset  {
+            defaultValue = 0
+        }
+        limit {
+            defaultValue = 50
+            min = 1
+            max = 1000
+        }
+    }
 }
