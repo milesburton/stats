@@ -181,20 +181,20 @@ class UsersControllerIntSpec extends GebSpec {
                                 ptsWeek: 1,
                                 rankTeam: 1,
                                 rankTeamDelta: 1)
-                ,
-                new User(
-                        teamId: 2,
-                        alias: "Test 2",
-                        ptsTotal: 1,
-                        ptsDelta: 1,
-                        wuTotal: 1,
-                        wuDelta: 1,
-                        rank: 1,
-                        rankDelta: 1,
-                        ptsDay: 1,
-                        ptsWeek: 1,
-                        rankTeam: 1,
-                        rankTeamDelta: 1)
+                        ,
+                        new User(
+                                teamId: 2,
+                                alias: "Test 2",
+                                ptsTotal: 1,
+                                ptsDelta: 1,
+                                wuTotal: 1,
+                                wuDelta: 1,
+                                rank: 1,
+                                rankDelta: 1,
+                                ptsDay: 1,
+                                ptsWeek: 1,
+                                rankTeam: 1,
+                                rankTeamDelta: 1)
                 ]
         )
 
@@ -207,7 +207,7 @@ class UsersControllerIntSpec extends GebSpec {
         then:
         def j = JSON.parse r.bodyAsString
         j.total == 1
-        j.results == fixtures
+        j.results == fixtures[0..0]
     }
 
     @Unroll

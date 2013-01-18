@@ -8,19 +8,22 @@ class UserService {
         User.list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true)
     }
 
-    def listForTeam(int teamId, Map params) {
+    def listForTeam(Long teamId, Map params) {
         User.list(teamId: teamId, offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true)
     }
 
     def search(String q, Map params) {
-        User.createCriteria().list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true){
+        User.createCriteria().list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true) {
             like('alias', "$q%")
         }
     }
 
-    def searchWithinTeam(int teamId, String q, Map params) {
-        User.createCriteria().list(teamId: teamId, offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true){
+    def searchWithinTeam(Long teamId, String q, Map params) {
+        User.createCriteria().list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true) {
             like('alias', "$q%")
+            and {
+                eq('teamId', teamId)
+            }
         }
     }
 }

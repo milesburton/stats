@@ -16,7 +16,7 @@ class UsersController {
         render asUsersList(userService.list(params))
     }
 
-    def listForTeam(int teamId) {
+    def listForTeam(Long teamId) {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
@@ -30,7 +30,7 @@ class UsersController {
         render asUsersList(userService.search(q, params))
     }
 
-    def searchWithinTeam(int teamId, String q) {
+    def searchWithinTeam(Long teamId, String q) {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
