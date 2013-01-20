@@ -19,6 +19,8 @@ class UserService {
     }
 
     def searchWithinTeam(Long teamId, String q, Map params) {
+        println params.offset
+        println params.limit
         User.createCriteria().list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true) {
             like('alias', "$q%")
             and {

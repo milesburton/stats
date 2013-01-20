@@ -4,3 +4,4 @@ Add API explanation
 Add sorting functional tests for user search
 Add historical fetch for teams
 Add historical fetch for users
+Add testing for URI mapping

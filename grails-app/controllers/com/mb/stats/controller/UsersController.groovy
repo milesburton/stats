@@ -34,6 +34,8 @@ class UsersController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
+        println params
+
         render asUsersList(userService.searchWithinTeam(teamId, q, params))
     }
 

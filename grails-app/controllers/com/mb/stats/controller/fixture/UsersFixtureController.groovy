@@ -16,6 +16,7 @@ class UsersFixtureController {
         deleteAllUsers()
 
         def fixtures = request.JSON.collect { new User(it) }
+        sort(fixtures)
         fixtures*.save(flush:true)
 
         render asResults(fixtures) as JSON
@@ -45,11 +46,15 @@ class UsersFixtureController {
 
         deleteAllUsers()
 
-        fixtures.sort { it.ptsTotal }
-        fixtures.reverse(true)
+        sort(fixtures)
         fixtures*.save(flush:true)
 
         asResults fixtures
+    }
+
+    private void sort(ArrayList fixtures) {
+        fixtures.sort { it.ptsTotal }
+        fixtures.reverse(true)
     }
 
     private void deleteAllUsers() {
