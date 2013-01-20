@@ -51,7 +51,7 @@ class SearchTeamsSpec extends RemoteServiceGebSpec {
     def "search sort by #sort #order"() {
 
         given:
-        def fixtures = teamFixtures(100)
+        def fixtures = teamFixtures(5)
 
         and:
         fixtures.sort { it.hasProperty(sort) ? it."${sort}" : it.ptsTotal }
@@ -65,8 +65,8 @@ class SearchTeamsSpec extends RemoteServiceGebSpec {
 
         then:
         def j = JSON.parse r.bodyAsString
-        j.total == 100
-        j.results == fixtures[0..49]
+        j.total == 5
+        j.results == fixtures[0..4]
 
         where:
         sort        | order
