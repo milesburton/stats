@@ -35,7 +35,7 @@ class SearchUsersSpec extends RemoteServiceGebSpec {
         String q = "Test"
 
         when:
-        RestResponse r = jsonClient.get("users/search/$q")
+        RestResponse r = jsonClient.get("v1/users/search/$q")
 
         then:
         def j = JSON.parse r.bodyAsString
@@ -57,7 +57,7 @@ class SearchUsersSpec extends RemoteServiceGebSpec {
         String q = "user"
 
         when:
-        RestResponse r = jsonClient.get("users/search/$q?sort=$sort&order=$order")
+        RestResponse r = jsonClient.get("v1/users/search/$q?sort=$sort&order=$order")
 
         then:
         def j = JSON.parse r.bodyAsString
@@ -101,7 +101,7 @@ class SearchUsersSpec extends RemoteServiceGebSpec {
         String q = "user"
 
         when:
-        RestResponse r = jsonClient.get("users/search/$q?limit=$limit&offset=$offset")
+        RestResponse r = jsonClient.get("v1/users/search/$q?limit=$limit&offset=$offset")
 
         then:
         def j = JSON.parse r.bodyAsString
@@ -126,7 +126,7 @@ class SearchUsersSpec extends RemoteServiceGebSpec {
         String q = "user"
 
         when:
-        RestResponse r = jsonClient.get("users/search/$q?limit=$limit&offset=$offset")
+        RestResponse r = jsonClient.get("v1/users/search/$q?limit=$limit&offset=$offset")
 
         then:
         def j = JSON.parse r.bodyAsString

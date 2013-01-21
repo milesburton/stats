@@ -16,7 +16,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
         def fixtures = userFixtures(100)
 
         when:
-        RestResponse r = jsonClient.get('users')
+        RestResponse r = jsonClient.get('v1/users')
 
         then:
         def j = JSON.parse r.bodyAsString
@@ -35,7 +35,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
         order != "asc" ? fixtures.reverse(true) : ''
 
         when:
-        RestResponse r = jsonClient.get("users?sort=$sort&order=$order")
+        RestResponse r = jsonClient.get("v1/users?sort=$sort&order=$order")
 
         then:
         def j = JSON.parse r.bodyAsString
@@ -76,7 +76,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
         def fixtures = userFixtures(1010)
 
         when:
-        RestResponse r = jsonClient.get("users?limit=$limit&offset=$offset")
+        RestResponse r = jsonClient.get("v1/users?limit=$limit&offset=$offset")
 
         then:
         def j = JSON.parse r.bodyAsString
@@ -98,7 +98,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
         def fixtures = userFixtures(100)
 
         when:
-        RestResponse r = jsonClient.get("users?limit=$limit&offset=$offset")
+        RestResponse r = jsonClient.get("v1/users?limit=$limit&offset=$offset")
 
         then:
         def j = JSON.parse r.bodyAsString

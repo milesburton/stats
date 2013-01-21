@@ -14,7 +14,7 @@ class ListUserHistorySpec extends RemoteServiceGebSpec {
         def fixtures = userHistoryFixtures(3)
 
         when:
-        RestResponse r = jsonClient.get('teams/62/users/user/history?timestampBegin=0&timestampEnd=101')
+        RestResponse r = jsonClient.get('v1/teams/62/users/user/history?timestampBegin=0&timestampEnd=101')
 
         then:
         def j = JSON.parse r.bodyAsString
