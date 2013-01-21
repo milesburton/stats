@@ -6,7 +6,7 @@ import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 
 @Mixin(UserHistoryFixtures)
-class ListUsersHistorySpec extends RemoteServiceGebSpec {
+class ListUserHistorySpec extends RemoteServiceGebSpec {
 
     def "list between"() {
 

@@ -15,8 +15,6 @@ class UserHistoryControllerSpec extends Specification {
         controller.userHistoryService = Mock(UserHistoryService)
 
         fakeResult = new FakePagedResultList()
-
-        config.stats.users = [:]
     }
 
     def 'list between'() {

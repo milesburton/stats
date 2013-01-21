@@ -22,7 +22,7 @@ class TeamHistory implements  Serializable{
     static mapping = {
         version false
         table 'f_teams'
-        id name: 'teamId' , generator: 'assigned'
+        id composite: ['teamId', 'timestamp']
         cache true
 
     }

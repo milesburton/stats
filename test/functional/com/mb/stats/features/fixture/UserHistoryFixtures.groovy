@@ -1,7 +1,5 @@
 package com.mb.stats.features.fixture
 
-import com.mb.stats.domain.User
-import com.popcornteam.restclient.request.StringBody
 import grails.converters.JSON
 
 class UserHistoryFixtures {

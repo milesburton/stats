@@ -14,6 +14,8 @@ class FixtureUrlMappings {
 
             '/fixture/users/history'(controller: 'UserHistoryFixture', action: 'create')
 
+            '/fixture/teams/history'(controller: 'TeamHistoryFixture', action: 'create')
+
         }
     }
 }
