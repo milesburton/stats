@@ -1,6 +1,5 @@
 package com.mb.stats
 
-import com.mb.stats.domain.Team
 import com.mb.stats.domain.User
 import grails.test.mixin.TestFor
 import spock.lang.Specification

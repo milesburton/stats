@@ -14,4 +14,7 @@ class NumberService {
     int constrain(Integer param, int lowerBound, int upperBound) {
         Math.min(Math.max(param, lowerBound), upperBound)
     }
+
+    static class UserHistoryService {
+    }
 }

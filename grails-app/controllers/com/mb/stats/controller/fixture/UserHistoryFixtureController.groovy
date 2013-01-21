@@ -2,9 +2,10 @@ package com.mb.stats.controller.fixture
 
 import com.mb.stats.domain.Team
 import com.mb.stats.domain.User
+import com.mb.stats.domain.UserHistory
 import grails.converters.JSON
 
-class UsersFixtureController {
+class UserHistoryFixtureController {
 
     def create() {
 
@@ -15,7 +16,7 @@ class UsersFixtureController {
 
         deleteAllUsers()
 
-        def fixtures = request.JSON.collect { new User(it) }
+        def fixtures = request.JSON.collect { new UserHistory(it) }
         sort(fixtures)
         fixtures*.save(flush:true)
 
@@ -27,9 +28,9 @@ class UsersFixtureController {
         def fixtures = []
 
         for (int i = 0; i < count; i++) {
-            fixtures.add new User(
-                    teamId: i,
-                    alias: "user " + Character.toChars(Math.abs(new Random().nextInt() % 26) + 65) + " $i ",
+            fixtures.add new UserHistory(
+                    teamId: 62,
+                    alias: "user",
                     ptsTotal: i,
                     ptsDelta: i,
                     wuTotal: i,
@@ -39,7 +40,9 @@ class UsersFixtureController {
                     ptsDay: i,
                     ptsWeek: i,
                     rankTeam: i,
-                    rankTeamDelta: i
+                    rankTeamDelta: i,
+                    timestamp: i
+
             )
 
         }
@@ -53,12 +56,12 @@ class UsersFixtureController {
     }
 
     private void sort(ArrayList fixtures) {
-        fixtures.sort { it.ptsTotal }
+        fixtures.sort { it.timestamp }
         fixtures.reverse(true)
     }
 
     private void deleteAllUsers() {
-        Team.executeUpdate("DELETE User")
+        Team.executeUpdate("DELETE UserHistory")
     }
 
     private List asResults(def list){
@@ -77,7 +80,7 @@ class UsersFixtureController {
                     rankTeamDelta: it.rankTeamDelta,
                     ptsDay: it.ptsDay,
                     ptsWeek: it.ptsWeek,
-
+                    timestamp: it.timestamp
             ]
 
         }

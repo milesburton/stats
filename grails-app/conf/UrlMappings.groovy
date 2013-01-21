@@ -6,6 +6,7 @@ class UrlMappings {
         "/teams"(controller: 'Teams', action: 'list')
         "/teams/search/$q"(controller: 'Teams', action: 'search')
         "/teams/$teamId/users/search/$q" (controller: 'Users', action: 'searchWithinTeam')
+        "/teams/$teamId/users/$alias/history" (controller: 'UserHistory', action: 'listBetween')
 
         "/users" (controller: 'Users', action: 'list')
         "/users/search/$q" (controller: 'Users', action: 'search')

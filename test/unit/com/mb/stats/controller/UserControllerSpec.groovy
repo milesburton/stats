@@ -63,7 +63,7 @@ class UserControllerSpec extends Specification {
         0 * _._
     }
 
-    def 'index'() {
+    def 'list'() {
 
         given:
         Map params = [:]

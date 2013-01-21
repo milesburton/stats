@@ -12,6 +12,8 @@ class FixtureUrlMappings {
             '/fixture/users'(controller: 'UsersFixture', action: 'create')
             '/fixture/users/custom'(controller: 'UsersFixture', action: 'custom')
 
+            '/fixture/users/history'(controller: 'UserHistoryFixture', action: 'create')
+
         }
     }
 }
