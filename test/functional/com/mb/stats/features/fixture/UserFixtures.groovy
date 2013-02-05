@@ -10,16 +10,16 @@ class UserFixtures {
         JSON.parse jsonClient.get("fixture/users?count=$c").bodyAsString
     }
 
-    def customTeamFixtures(List l) {
+    def setupFixturesFor(List l) {
         String str = l as JSON
         JSON.parse jsonClient.post("fixture/users/custom", new StringBody(str)).bodyAsString
     }
 
-    def customTeamFixturesForTeam(long teamId, int count){
+    def usersForTeamList(long teamId, int count){
 
-        def fixtures = []
+        def f = []
         for (int i = 0; i < count; i++) {
-            fixtures.add new User(
+            f.add new User(
                     teamId: teamId,
                     alias: "user " + Character.toChars(Math.abs(new Random().nextInt() % 26) + 65) + " $i ",
                     ptsTotal: i,
@@ -33,9 +33,8 @@ class UserFixtures {
                     rankTeam: i,
                     rankTeamDelta: i
             )
-
         }
 
-        customTeamFixtures fixtures
+        f
     }
 }

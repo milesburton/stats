@@ -12,7 +12,7 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
     def "list for team"() {
 
         given:
-        def fixtures = customTeamFixturesForTeam(62, 10)
+        def fixtures = setupFixturesFor usersForTeamList(62, 10)
 
         when:
         RestResponse r = jsonClient.get('v1/teams/62/users')
@@ -23,11 +23,25 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
         j.results == fixtures
     }
 
+    def "list for team with other teams"() {
+
+        given:
+        def fixtures = setupFixturesFor usersForTeamList(62, 10).plus(usersForTeamList(30, 10))
+
+        when:
+        RestResponse r = jsonClient.get('v1/teams/62/users')
+
+        then:
+        def j = JSON.parse r.bodyAsString
+        j.total == 10
+        j.results == fixtures.findAll { it.teamId==62 }
+    }
+
     @Unroll
     def "list sort by #sort #order"() {
 
         given:
-        def fixtures = customTeamFixturesForTeam(62, 10)
+        def fixtures = setupFixturesFor usersForTeamList(62, 10)
 
         and:
         fixtures.sort { it.hasProperty(sort) ? it."${sort}" : it.ptsTotal }
@@ -70,7 +84,7 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
     def "list illegal offset #offset and limit #limit"() {
 
         given:
-        def fixtures = customTeamFixturesForTeam(62, 1010)
+        def fixtures = setupFixturesFor usersForTeamList(62, 1010)
 
         when:
         RestResponse r = jsonClient.get("v1/teams/62/users?limit=$limit&offset=$offset")
@@ -92,7 +106,7 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
     def "list offset #offset and limit #limit"() {
 
         given:
-        def fixtures = customTeamFixturesForTeam(62, 100)
+        def fixtures = setupFixturesFor usersForTeamList(62, 100)
 
         when:
         RestResponse r = jsonClient.get("v1/teams/62/users?limit=$limit&offset=$offset")

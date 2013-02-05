@@ -3,7 +3,6 @@ package com.mb.stats.features
 import com.mb.stats.domain.User
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.UserFixtures
-import com.mb.stats.features.fixture.UserHistoryFixtures
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 import spock.lang.Unroll
@@ -14,7 +13,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
     def "search within team"() {
 
         given:
-        def fixtures = customTeamFixtures(
+        def fixtures = setupFixturesFor(
                 [
                         new User(
                                 teamId: 1,
