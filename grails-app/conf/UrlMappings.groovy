@@ -18,6 +18,11 @@ class UrlMappings {
         "/"(view: "/index")
         "500"(view: '/error')
 
+        // Team documentation
         "/docs/get-teams" (view: "/docs/get-teams")
+        "/docs/get-history-for-team" (view: "/docs/get-history-for-team")
+        "/docs/get-users-for-team" (view: "/docs/get-users-for-team")
+
+        "/docs/get-users" (view: "/docs/get-users")
     }
 }

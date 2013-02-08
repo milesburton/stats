@@ -51,7 +51,8 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">REST API Documentation</li>
                     <li><a href="/docs/get-teams">teams/</a></li>
-                    <li><a href="/docs/get-team-by-id">teams/:team-id</a></li>
+                    <li><a href="/docs/get-history-for-team.gsp">teams/:team-id/history</a></li>
+                    <li><a href="/docs/get-users-for-team.gsp">teams/:team-id/users</a></li>
                     <li><a href="/docs/get-users">users/</a>
                     <li class="nav-header">Examples</li>
                     </li>
