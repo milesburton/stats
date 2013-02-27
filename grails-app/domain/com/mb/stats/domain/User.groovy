@@ -22,7 +22,7 @@ class User implements  Serializable {
 
     static mapping = {
         version false
-        table 'f_users'
+        table 'ag_users'
         id composite: ['alias', 'teamId']
         cache true
     }

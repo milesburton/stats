@@ -20,7 +20,7 @@ class Team implements  Serializable{
 
     static mapping = {
         version false
-        table 'f_teams'
+        table 'ag_teams'
         id name: 'teamId' , generator: 'assigned'
         cache true
 
