@@ -61,8 +61,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
     def "search within team sort by #sort #order"() {
 
         given:
-        def fixtures = usersForTeamList(1, 5)
-        setupFixturesFor fixtures
+        def fixtures = setupFixturesFor usersForTeamList(1, 5)
 
         and:
         fixtures.sort { it.hasProperty(sort) ? it."${sort}" : it.ptsTotal }
@@ -108,8 +107,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
     def "search within team illegal offset #offset and limit #limit"() {
 
         given:
-        def fixtures = usersForTeamList(1, 1010)
-        setupFixturesFor fixtures
+        def fixtures = setupFixturesFor usersForTeamList(1, 1010)
 
         and:
         String q = "user"
@@ -136,8 +134,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
     def "search within team offset #offset and limit #limit"() {
 
         given:
-        def fixtures = usersForTeamList(1, 100)
-        setupFixturesFor fixtures
+        def fixtures = setupFixturesFor usersForTeamList(1, 100)
 
         and:
         String q = "user"
