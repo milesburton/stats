@@ -10,6 +10,7 @@ class TeamHistoryController {
 
     def listBetween(RequestTeamHistoryTimestampBetweenCommand r) {
 
+        cache: "tillNextUpdate"
         render asList(teamHistoryService.listBetween(r))
     }
 

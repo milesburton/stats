@@ -13,6 +13,7 @@ class UsersController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
+        cache: "tillNextUpdate"
         render asUsersList(userService.list(params))
     }
 
@@ -20,6 +21,7 @@ class UsersController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
+        cache: "tillNextUpdate"
         render asUsersList(userService.listForTeam(teamId, params))
     }
 
@@ -27,6 +29,7 @@ class UsersController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
+        cache: "tillNextUpdate"
         render asUsersList(userService.search(q, params))
     }
 
@@ -34,6 +37,7 @@ class UsersController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
+        cache: "tillNextUpdate"
         render asUsersList(userService.searchWithinTeam(teamId, q, params))
     }
 

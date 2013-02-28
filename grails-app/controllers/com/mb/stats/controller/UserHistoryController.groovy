@@ -10,6 +10,7 @@ class UserHistoryController {
 
     def listBetween(RequestUserHistoryTimestampBetweenCommand r) {
 
+        cache: "tillNextUpdate"
         render asUsersList(userHistoryService.listBetween(r))
     }
 

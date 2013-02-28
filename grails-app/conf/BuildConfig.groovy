@@ -48,6 +48,8 @@ grails.project.dependency.resolution = {
                 'com.google.code.gson:gson:2.2.2'
 
         //  compile ":newrelic:0.5"
+        compile 'joda-time:joda-time:2.0'
+
 
         test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
             exclude "xml-apis"

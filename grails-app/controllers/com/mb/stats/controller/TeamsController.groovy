@@ -14,6 +14,7 @@ class TeamsController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
+        cache: "tillNextUpdate"
         render asTeamsList(teamService.list(params))
     }
 
@@ -21,6 +22,7 @@ class TeamsController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
+        cache: "tillNextUpdate"
         render asTeamsList(teamService.search(q, params))
     }
 
