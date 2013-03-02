@@ -19,6 +19,8 @@ class ListTeamHistorySpec extends RemoteServiceGebSpec {
 
         then:
         def j = JSON.parse r.bodyAsString
+        println r.headers*.name
+        r.headers*.name.contains('EXPIRES')
         j.total == 3
         j.results == fixtures
     }

@@ -178,6 +178,8 @@ stats {
     }
 }
 
+cache.headers.enabled = true
+
 cache.headers.presets = [
 
         tillNextUpdate: [shared: true, validUntil: new NextUpdateCalculator().calculateNextUpdate(11400)]
