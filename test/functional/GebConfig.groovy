@@ -24,9 +24,6 @@ driver = {
     driver
 }
 
-
-baseUrl =
-
 environments {
 
     // run as “grails -Dgeb.env=chrome test-app”
