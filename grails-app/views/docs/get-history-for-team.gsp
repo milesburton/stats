@@ -83,7 +83,7 @@
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Content-Length: <span class="variable">length</span>
-
+    Access-Control-Allow-Origin: *
 
     {
     "total": 13,
