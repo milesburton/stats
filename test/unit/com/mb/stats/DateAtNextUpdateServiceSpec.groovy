@@ -1,14 +1,32 @@
 package com.mb.stats
 
-import grails.test.mixin.TestFor
+import com.mb.stats.features.fixture.NextUpdateIntervalFixtures
+import org.joda.time.DateMidnight
+import org.joda.time.DateTime
+import org.joda.time.Duration
+import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
- */
-@TestFor(DateAtNextUpdateService)
-class DateAtNextUpdateServiceSpec {
+class DateAtNextUpdateServiceSpec extends Specification {
 
-    void testSomething() {
-        fail "Implement me"
+    DateAtNextUpdateService dateAtNextUpdateService
+
+    def setup(){
+        dateAtNextUpdateService = new DateAtNextUpdateService()
+    }
+
+    def 'calculate'(){
+
+        expect:
+            dateAtNextUpdateService.calculate() == calculateNextUpdate()
+    }
+
+    DateTime calculateNextUpdate() {
+
+        def midnight = new DateMidnight()
+        Duration duration = new Duration(midnight, new DateTime())
+
+        int minutesTillNextUpdate = (Math.ceil(duration.getStandardMinutes() / NextUpdateIntervalFixtures.updateIntervalInMinutes) * NextUpdateIntervalFixtures.updateIntervalInMinutes)
+
+        midnight.toDateTime().plusMinutes(minutesTillNextUpdate + NextUpdateIntervalFixtures.updateDuration)
     }
 }
