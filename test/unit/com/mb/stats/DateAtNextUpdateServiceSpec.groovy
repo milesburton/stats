@@ -1,10 +1,11 @@
 package com.mb.stats
 
-import com.mb.stats.features.fixture.NextUpdateIntervalFixtures
+
 import org.joda.time.DateMidnight
 import org.joda.time.DateTime
 import org.joda.time.Duration
 import spock.lang.Specification
+import test.fixture.NextUpdateIntervalFixtures
 
 class DateAtNextUpdateServiceSpec extends Specification {
 
