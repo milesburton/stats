@@ -3,12 +3,13 @@ package com.mb.stats.features
 import com.mb.stats.domain.User
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.UserFixtures
+import com.mb.stats.features.verify.VerifyCorsHeader
 import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 import spock.lang.Unroll
 
-@Mixin([UserFixtures, VerifyExpiresHeader])
+@Mixin([UserFixtures, VerifyExpiresHeader, VerifyCorsHeader])
 class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
 
     def "search within team"() {
@@ -55,6 +56,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 1
         j.results == fixtures[1..1]
     }
@@ -78,6 +80,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 5
         j.results == fixtures
 
@@ -121,6 +124,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         def expectedResults = fixtures[expectedOffset..(expectedLimit - 1)]
         j == [total: 1010, results: expectedResults]
 
@@ -148,6 +152,7 @@ class SearchUsersWithinTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 100
         j.results == fixtures[offset..offset + (limit - 1)]
 

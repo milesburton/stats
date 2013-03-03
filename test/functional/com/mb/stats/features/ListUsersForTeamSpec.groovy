@@ -2,12 +2,13 @@ package com.mb.stats.features
 
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.UserFixtures
+import com.mb.stats.features.verify.VerifyCorsHeader
 import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 import spock.lang.Unroll
 
-@Mixin([UserFixtures, VerifyExpiresHeader])
+@Mixin([UserFixtures, VerifyExpiresHeader, VerifyCorsHeader])
 class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
     def "list for team"() {
@@ -21,6 +22,7 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 10
         j.results == fixtures
     }
@@ -56,6 +58,7 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 10
         j.results == fixtures[0..9]
 
@@ -96,6 +99,7 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 1010
         j.results == fixtures[expectedOffset..(expectedLimit - 1)]
 
@@ -119,6 +123,7 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 100
         j.results == fixtures[offset..offset + (limit - 1)]
 

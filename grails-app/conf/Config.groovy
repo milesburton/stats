@@ -173,4 +173,6 @@ stats {
     }
 }
 
+cors.url.pattern = '/v1/*'
+
 cache.headers.enabled = true

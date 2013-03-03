@@ -2,12 +2,13 @@ package com.mb.stats.features
 
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.UserFixtures
+import com.mb.stats.features.verify.VerifyCorsHeader
 import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 import spock.lang.Unroll
 
-@Mixin([UserFixtures, VerifyExpiresHeader])
+@Mixin([UserFixtures, VerifyExpiresHeader, VerifyCorsHeader])
 class ListUsersSpec extends RemoteServiceGebSpec {
 
     def "list"() {
@@ -21,6 +22,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 100
         j.results == fixtures[0..49]
     }
@@ -29,7 +31,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
     def "list sort by #sort #order"() {
 
         given:
-        def fixtures = userFixtures(100)
+        List fixtures = userFixtures(100)
 
         and:
         fixtures.sort { it.hasProperty(sort) ? it."${sort}" : it.ptsTotal }
@@ -41,6 +43,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 100
         j.results == fixtures[0..49]
 
@@ -83,6 +86,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 1010
         j.results == fixtures[expectedOffset..(expectedLimit - 1)]
 
@@ -106,6 +110,7 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 100
         j.results == fixtures[offset..offset + (limit - 1)]
 

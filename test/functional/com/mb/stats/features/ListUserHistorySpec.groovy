@@ -2,11 +2,12 @@ package com.mb.stats.features
 
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.UserHistoryFixtures
+import com.mb.stats.features.verify.VerifyCorsHeader
 import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 
-@Mixin([UserHistoryFixtures, VerifyExpiresHeader])
+@Mixin([UserHistoryFixtures, VerifyExpiresHeader, VerifyCorsHeader])
 class ListUserHistorySpec extends RemoteServiceGebSpec {
 
     def "list between"() {
@@ -20,6 +21,7 @@ class ListUserHistorySpec extends RemoteServiceGebSpec {
 
         then:
         verifyCacheExpireByNextUpdate(r)
+        verifyCorsHeader(r)
         j.total == 3
         j.results == fixtures
     }

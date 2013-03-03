@@ -13,6 +13,8 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver
 baseUrl = System.getProperty('geb.http.baseurl') ?: "http://localhost:8080/stats/"
 secureBaseUrl = System.getProperty('geb.https.baseurl') ?: "http://localhost:8080/stats/"
 
+println "Using baseUrl: ${baseUrl}"
+
 reportsDir = 'target/test-reports/screenshots'
 
 
