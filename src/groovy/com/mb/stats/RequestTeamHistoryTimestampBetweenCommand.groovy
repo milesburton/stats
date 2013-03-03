@@ -16,6 +16,6 @@ class RequestTeamHistoryTimestampBetweenCommand {
     static constraints = {
         timestampBegin blank: false
         timestampEnd blank: false
-        teamId blank:false
+        teamId blank: false
     }
 }

@@ -1,12 +1,13 @@
 package com.mb.stats.controller
 
+import com.mb.stats.CachableTillNextUpdateService
 import com.mb.stats.ListParamSanitizerService
-
 import com.mb.stats.TeamService
 import grails.converters.JSON
 
 class TeamsController {
 
+    CachableTillNextUpdateService cachableTillNextUpdateService
     ListParamSanitizerService listParamSanitizerService
     TeamService teamService
 
@@ -14,7 +15,7 @@ class TeamsController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
-        cache: "tillNextUpdate"
+        cache cachableTillNextUpdateService.tillNextUpdate()
         render asTeamsList(teamService.list(params))
     }
 
@@ -22,7 +23,7 @@ class TeamsController {
 
         listParamSanitizerService.sanitizePaginationParams(params, config)
 
-        cache: "tillNextUpdate"
+        cache cachableTillNextUpdateService.tillNextUpdate()
         render asTeamsList(teamService.search(q, params))
     }
 

@@ -3,18 +3,12 @@ package com.mb.stats.features
 import com.mb.stats.domain.Team
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.TeamFixtures
-import com.popcornteam.restclient.RestClient
-import com.popcornteam.restclient.factory.HttpClientFactory
-import com.popcornteam.restclient.request.MapBody
-import com.popcornteam.restclient.request.StringBody
+import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
-import geb.spock.GebSpec
 import grails.converters.JSON
-import org.apache.http.client.HttpClient
 import spock.lang.Unroll
 
-
-@Mixin(TeamFixtures)
+@Mixin([TeamFixtures, VerifyExpiresHeader])
 class SearchTeamsSpec extends RemoteServiceGebSpec {
 
     def "search"() {
@@ -40,9 +34,10 @@ class SearchTeamsSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/teams/search/$q")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 1
         j.results == fixtures
     }
@@ -62,9 +57,10 @@ class SearchTeamsSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/teams/search/$q?sort=$sort&order=$order")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 5
         j.results == fixtures[0..4]
 
@@ -106,9 +102,10 @@ class SearchTeamsSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/teams/search/$q?limit=$limit&offset=$offset")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 1010
         j.results == fixtures[expectedOffset..(expectedLimit - 1)]
 
@@ -131,9 +128,10 @@ class SearchTeamsSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/teams/search/$q?limit=$limit&offset=$offset")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 100
         j.results == fixtures[offset..offset + (limit - 1)]
 

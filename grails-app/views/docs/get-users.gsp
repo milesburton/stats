@@ -62,35 +62,35 @@
     <h2>Example</h2>
 
     <div class="highlight"><pre><code>
-    GET /v1/users HTTP/1.1
-    Host: api.razerstats.com
-    Content-Type: application/json; charset=utf-8</code></pre>
+        GET /v1/users HTTP/1.1
+        Host: api.razerstats.com
+        Content-Type: application/json; charset=utf-8</code></pre>
     </div>
 
     <div class="highlight"><pre><code class="js">
-    HTTP/1.1 200 OK
-    Content-Type: application/json; charset=utf-8
-    Content-Length: <span class="variable">length</span>
+        HTTP/1.1 200 OK
+        Content-Type: application/json; charset=utf-8
+        Content-Length: <span class="variable">length</span>
 
         {
-            "total":1,
-            "results":
-            [
-                {
-                "teamId": 199966,
-                "alias": "OATmeal",
-                "ptsTotal": 341925,
-                "ptsDelta": 26,
-                "wuTotal": 924111013,
-                "wuDelta": 85686,
-                "rank": 17,
-                "rankDelta": 0,
-                "rankTeam": 1,
-                "rankTeamDelta": 0,
-                "ptsDay": 100,
-                "ptsWeek": 1197
-                }
-            ]
+        "total":1,
+        "results":
+        [
+        {
+        "teamId": 199966,
+        "alias": "OATmeal",
+        "ptsTotal": 341925,
+        "ptsDelta": 26,
+        "wuTotal": 924111013,
+        "wuDelta": 85686,
+        "rank": 17,
+        "rankDelta": 0,
+        "rankTeam": 1,
+        "rankTeamDelta": 0,
+        "ptsDay": 100,
+        "ptsWeek": 1197
+        }
+        ]
         }
     </code></pre>
     </div>

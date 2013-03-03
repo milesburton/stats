@@ -2,12 +2,12 @@ package com.mb.stats.features
 
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.UserFixtures
-import com.mb.stats.features.fixture.UserHistoryFixtures
+import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 import spock.lang.Unroll
 
-@Mixin(UserFixtures)
+@Mixin([UserFixtures, VerifyExpiresHeader])
 class ListUsersSpec extends RemoteServiceGebSpec {
 
     def "list"() {
@@ -17,9 +17,10 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get('v1/users')
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 100
         j.results == fixtures[0..49]
     }
@@ -36,9 +37,10 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/users?sort=$sort&order=$order")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 100
         j.results == fixtures[0..49]
 
@@ -77,9 +79,10 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/users?limit=$limit&offset=$offset")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 1010
         j.results == fixtures[expectedOffset..(expectedLimit - 1)]
 
@@ -99,9 +102,10 @@ class ListUsersSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/users?limit=$limit&offset=$offset")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 100
         j.results == fixtures[offset..offset + (limit - 1)]
 

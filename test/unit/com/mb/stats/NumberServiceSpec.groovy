@@ -1,9 +1,6 @@
 package com.mb.stats
 
-
-
-import grails.test.mixin.*
-import org.junit.*
+import grails.test.mixin.TestFor
 import spock.lang.Specification
 import spock.lang.Unroll
 

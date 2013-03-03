@@ -1,16 +1,18 @@
 package com.mb.stats.controller
 
+import com.mb.stats.CachableTillNextUpdateService
 import com.mb.stats.RequestUserHistoryTimestampBetweenCommand
 import com.mb.stats.UserHistoryService
 import grails.converters.JSON
 
 class UserHistoryController {
 
+    CachableTillNextUpdateService cachableTillNextUpdateService
     UserHistoryService userHistoryService
 
     def listBetween(RequestUserHistoryTimestampBetweenCommand r) {
 
-        cache: "tillNextUpdate"
+        cache cachableTillNextUpdateService.tillNextUpdate()
         render asUsersList(userHistoryService.listBetween(r))
     }
 

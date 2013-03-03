@@ -26,7 +26,7 @@ class FakeQuery extends org.grails.datastore.mapping.query.Query {
     }
 
     public int size() {
-    -1
+        -1
     }
 
 

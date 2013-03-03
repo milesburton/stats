@@ -1,8 +1,6 @@
 package com.mb.stats
 
-
-
-import grails.test.mixin.*
+import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 @TestFor(ListParamSanitizerService)

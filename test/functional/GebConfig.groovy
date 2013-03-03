@@ -4,9 +4,10 @@
 	See: http://www.gebish.org/manual/current/configuration.html
 */
 
-import org.openqa.selenium.htmlunit.HtmlUnitDriver
-import org.openqa.selenium.firefox.FirefoxDriver
+
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.htmlunit.HtmlUnitDriver
 
 // Use htmlunit as the default
 // See: http://code.google.com/p/selenium/wiki/HtmlUnitDriver

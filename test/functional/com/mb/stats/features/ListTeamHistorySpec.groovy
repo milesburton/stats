@@ -2,11 +2,11 @@ package com.mb.stats.features
 
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.TeamHistoryFixtures
-import com.mb.stats.features.fixture.UserHistoryFixtures
+import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 
-@Mixin(TeamHistoryFixtures)
+@Mixin([TeamHistoryFixtures, VerifyExpiresHeader])
 class ListTeamHistorySpec extends RemoteServiceGebSpec {
 
     def "list between"() {
@@ -16,11 +16,10 @@ class ListTeamHistorySpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get('v1/teams/62/history?timestampBegin=0&timestampEnd=101')
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
-        println r.headers*.name
-        r.headers*.name.contains('EXPIRES')
+        verifyCacheExpireByNextUpdate(r)
         j.total == 3
         j.results == fixtures
     }

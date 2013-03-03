@@ -5,16 +5,16 @@ import groovy.transform.ToString
 
 @ToString
 @EqualsAndHashCode
-class TeamHistory implements  Serializable{
+class TeamHistory implements Serializable {
 
-	Long teamId
-	String alias
-	Long ptsTotal
-	Long ptsDelta
-	Long wuTotal
-	Long wuDelta
-	Long rank
-	Long rankDelta
+    Long teamId
+    String alias
+    Long ptsTotal
+    Long ptsDelta
+    Long wuTotal
+    Long wuDelta
+    Long rank
+    Long rankDelta
     Long ptsDay
     Long ptsWeek
     Long timestamp

@@ -20,7 +20,7 @@
     <r:require module="bootstrap"/>
 
     <g:layoutHead/>
-    <r:layoutResources />
+    <r:layoutResources/>
 </head>
 
 <body>
@@ -34,6 +34,7 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand" href="#">Razer Folding@Home Statistics</a>
+
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="active"><a href="/">Home</a></li>
@@ -55,14 +56,13 @@
                     <li><a href="/docs/get-users-for-team">teams/:team-id/users</a></li>
                     <li><a href="/docs/get-users">users/</a>
                     <li class="nav-header">Examples</li>
-                    </li>
+                </li>
                 </ul>
-
 
             </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-        <g:layoutBody/>
+            <g:layoutBody/>
         </div><!--/span-->
     </div><!--/row-->
 
@@ -76,6 +76,6 @@
 </div>
 
 <g:javascript library="bootstrap"/>
-<r:layoutResources />
+<r:layoutResources/>
 </body>
 </html>

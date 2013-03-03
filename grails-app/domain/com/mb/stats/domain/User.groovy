@@ -5,18 +5,18 @@ import groovy.transform.ToString
 
 @ToString
 @EqualsAndHashCode
-class User implements  Serializable {
+class User implements Serializable {
 
-	Long teamId
-	String alias
-	Long ptsTotal
-	Long ptsDelta
-	Long wuTotal
-	Long wuDelta
-	Long rank
-	Long rankDelta
-	Long rankTeam
-	Long rankTeamDelta
+    Long teamId
+    String alias
+    Long ptsTotal
+    Long ptsDelta
+    Long wuTotal
+    Long wuDelta
+    Long rank
+    Long rankDelta
+    Long rankTeam
+    Long rankTeamDelta
     Long ptsDay
     Long ptsWeek
 
@@ -27,7 +27,7 @@ class User implements  Serializable {
         cache true
     }
 
-	static constraints = {
-		alias maxSize: 199
-	}
+    static constraints = {
+        alias maxSize: 199
+    }
 }

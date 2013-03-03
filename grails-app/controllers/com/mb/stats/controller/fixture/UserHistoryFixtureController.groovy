@@ -1,7 +1,6 @@
 package com.mb.stats.controller.fixture
 
 import com.mb.stats.domain.Team
-import com.mb.stats.domain.User
 import com.mb.stats.domain.UserHistory
 import grails.converters.JSON
 
@@ -12,13 +11,13 @@ class UserHistoryFixtureController {
         render createFixtureList(params.count.toInteger()) as JSON
     }
 
-    def custom(){
+    def custom() {
 
         deleteAllUsers()
 
         def fixtures = request.JSON.collect { new UserHistory(it) }
         sort(fixtures)
-        fixtures*.save(flush:true)
+        fixtures*.save(flush: true)
 
         render asResults(fixtures) as JSON
     }
@@ -50,7 +49,7 @@ class UserHistoryFixtureController {
         deleteAllUsers()
 
         sort(fixtures)
-        fixtures*.save(flush:true)
+        fixtures*.save(flush: true)
 
         asResults fixtures
     }
@@ -64,7 +63,7 @@ class UserHistoryFixtureController {
         Team.executeUpdate("DELETE UserHistory")
     }
 
-    private List asResults(def list){
+    private List asResults(def list) {
 
         list.collect {
             [

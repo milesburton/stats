@@ -15,7 +15,7 @@ class UserFixtures {
         JSON.parse jsonClient.post("fixture/users/custom", new StringBody(str)).bodyAsString
     }
 
-    def usersForTeamList(long teamId, int count){
+    def usersForTeamList(long teamId, int count) {
 
         def f = []
         for (int i = 0; i < count; i++) {

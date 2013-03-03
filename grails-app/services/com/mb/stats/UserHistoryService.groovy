@@ -6,7 +6,7 @@ class UserHistoryService {
 
     def listBetween(RequestUserHistoryTimestampBetweenCommand r) {
 
-        UserHistory.createCriteria().list(sort: 'timestamp',order: 'desc', cache: true) {
+        UserHistory.createCriteria().list(sort: 'timestamp', order: 'desc', cache: true) {
             between("timestamp", r.timestampBegin, r.timestampEnd)
             and {
                 eq("alias", r.alias)

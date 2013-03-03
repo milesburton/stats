@@ -1,16 +1,19 @@
 package com.mb.stats.controller
 
+import com.mb.stats.CachableTillNextUpdateService
 import com.mb.stats.RequestTeamHistoryTimestampBetweenCommand
 import com.mb.stats.TeamHistoryService
 import grails.converters.JSON
 
+
 class TeamHistoryController {
 
+    CachableTillNextUpdateService cachableTillNextUpdateService
     TeamHistoryService teamHistoryService
 
     def listBetween(RequestTeamHistoryTimestampBetweenCommand r) {
 
-        cache: "tillNextUpdate"
+        cache cachableTillNextUpdateService.tillNextUpdate()
         render asList(teamHistoryService.listBetween(r))
     }
 

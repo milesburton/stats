@@ -5,23 +5,23 @@ import groovy.transform.ToString
 
 @ToString
 @EqualsAndHashCode
-class Team implements  Serializable{
+class Team implements Serializable {
 
-	Long teamId
-	String alias
-	Long ptsTotal
-	Long ptsDelta
-	Long wuTotal
-	Long wuDelta
-	Long rank
-	Long rankDelta
+    Long teamId
+    String alias
+    Long ptsTotal
+    Long ptsDelta
+    Long wuTotal
+    Long wuDelta
+    Long rank
+    Long rankDelta
     Long ptsDay
     Long ptsWeek
 
     static mapping = {
         version false
         table 'ag_teams'
-        id name: 'teamId' , generator: 'assigned'
+        id name: 'teamId', generator: 'assigned'
         cache true
 
     }

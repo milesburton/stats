@@ -2,11 +2,12 @@ package com.mb.stats.features
 
 import com.mb.stats.features.base.RemoteServiceGebSpec
 import com.mb.stats.features.fixture.UserFixtures
+import com.mb.stats.features.verify.VerifyExpiresHeader
 import com.popcornteam.restclient.response.RestResponse
 import grails.converters.JSON
 import spock.lang.Unroll
 
-@Mixin(UserFixtures)
+@Mixin([UserFixtures, VerifyExpiresHeader])
 class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
     def "list for team"() {
@@ -16,9 +17,10 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get('v1/teams/62/users')
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 10
         j.results == fixtures
     }
@@ -30,11 +32,12 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get('v1/teams/62/users')
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 10
-        j.results == fixtures.findAll { it.teamId==62 }
+        j.results == fixtures.findAll { it.teamId == 62 }
     }
 
     @Unroll
@@ -49,9 +52,10 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/teams/62/users?sort=$sort&order=$order")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 10
         j.results == fixtures[0..9]
 
@@ -88,9 +92,10 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/teams/62/users?limit=$limit&offset=$offset")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 1010
         j.results == fixtures[expectedOffset..(expectedLimit - 1)]
 
@@ -110,9 +115,10 @@ class ListUsersForTeamSpec extends RemoteServiceGebSpec {
 
         when:
         RestResponse r = jsonClient.get("v1/teams/62/users?limit=$limit&offset=$offset")
+        def j = JSON.parse r.bodyAsString
 
         then:
-        def j = JSON.parse r.bodyAsString
+        verifyCacheExpireByNextUpdate(r)
         j.total == 100
         j.results == fixtures[offset..offset + (limit - 1)]
 

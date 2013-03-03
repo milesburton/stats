@@ -1,7 +1,4 @@
 import com.mb.stats.NextUpdateCalculator
-import org.joda.time.DateMidnight
-import org.joda.time.DateTime
-import org.joda.time.Duration
 
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
@@ -64,8 +61,8 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
-disable.auto.recompile=false
-grails.gsp.enable.reload=true
+disable.auto.recompile = false
+grails.gsp.enable.reload = true
 
 environments {
     development {
@@ -146,7 +143,7 @@ stats {
             defaultValue = "ptsTotal"
         }
 
-        offset  {
+        offset {
             defaultValue = 0
         }
         limit {
@@ -167,7 +164,7 @@ stats {
             defaultValue = "ptsTotal"
         }
 
-        offset  {
+        offset {
             defaultValue = 0
         }
         limit {
@@ -179,8 +176,3 @@ stats {
 }
 
 cache.headers.enabled = true
-
-cache.headers.presets = [
-
-        tillNextUpdate: [shared: true, validUntil: new NextUpdateCalculator().calculateNextUpdate(11400)]
-]

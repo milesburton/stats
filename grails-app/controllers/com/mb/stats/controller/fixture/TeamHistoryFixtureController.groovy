@@ -1,8 +1,6 @@
 package com.mb.stats.controller.fixture
 
-import com.mb.stats.domain.Team
 import com.mb.stats.domain.TeamHistory
-import com.mb.stats.domain.UserHistory
 import grails.converters.JSON
 
 class TeamHistoryFixtureController {
@@ -28,14 +26,14 @@ class TeamHistoryFixtureController {
                     rankDelta: i,
                     ptsDay: i,
                     ptsWeek: i,
-                    timestamp: i            )
+                    timestamp: i)
 
         }
 
         deleteAll()
 
         sort(fixtures)
-        fixtures*.save(flush:true)
+        fixtures*.save(flush: true)
 
         asResults fixtures
     }
@@ -49,7 +47,7 @@ class TeamHistoryFixtureController {
         TeamHistory.executeUpdate("DELETE TeamHistory")
     }
 
-    private List asResults(def list){
+    private List asResults(def list) {
 
         list.collect {
             [
