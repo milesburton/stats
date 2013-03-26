@@ -13,3 +13,6 @@ build
 .classpath
 .settings
 .gradle
+log
+upload.sh
+
