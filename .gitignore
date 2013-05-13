@@ -14,5 +14,3 @@ build
 .settings
 .gradle
 log
-upload.sh
-
