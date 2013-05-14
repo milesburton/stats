@@ -46,15 +46,35 @@ disable.auto.recompile = false
 grails.gsp.enable.reload = true
 
 environments {
+
     development {
         grails.logging.jul.usebridge = true
+        setDynamicServerUrl()
+        useFakeRazerApi()
     }
+
+    test {
+        setDynamicServerUrl()
+        useFakeRazerApi()
+    }
+
     production {
         grails.logging.jul.usebridge = false
-        
+        grails.serverURL = "http://api.razerstats.com"
     }
 }
 
+private void setDynamicServerUrl() {
+
+    int applicationPort = (System.getProperty('server.port') ?: 8080).toInteger()
+    grails.serverURL = "http://localhost:$applicationPort/stats"
+}
+
+private void useFakeRazerApi() {
+
+    stats.api.endpoint = "${grails.serverURL}/fixture/api"
+
+}
 log4j = {
 
     error 'org.codehaus.groovy.grails.web.servlet',        

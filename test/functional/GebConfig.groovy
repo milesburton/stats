@@ -9,10 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.htmlunit.HtmlUnitDriver
 
-
-baseUrl = System.getProperty('geb.http.baseurl') ?: "http://localhost:8080/stats/"
-secureBaseUrl = System.getProperty('geb.https.baseurl') ?: "http://localhost:8080/stats/"
-
 println "Using baseUrl: ${baseUrl}"
 
 reportsDir = 'target/test-reports/screenshots'
@@ -21,9 +17,9 @@ reportsDir = 'target/test-reports/screenshots'
 // Use htmlunit as the default
 // See: http://code.google.com/p/selenium/wiki/HtmlUnitDriver
 driver = {
-    def driver = new HtmlUnitDriver()
-    driver.javascriptEnabled = true
-    driver
+    def d = new HtmlUnitDriver()
+    d.javascriptEnabled = true
+    d
 }
 
 environments {
