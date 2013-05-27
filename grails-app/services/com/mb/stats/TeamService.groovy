@@ -8,6 +8,10 @@ class TeamService {
         Team.list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true)
     }
 
+    def get(Long teamId){
+        Team.get(teamId)
+    }
+
     def search(String q, Map params) {
         Team.createCriteria().list(offset: params.offset, max: params.limit, sort: params.sort, order: params.order, cache: true) {
             like('alias', "$q%")

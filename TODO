@@ -1,9 +1,0 @@
-Implement versioning
-Implement caching headers
-Add API explanation
-Add sorting functional tests for user search
-List users for team functional spec
-Add historical fetch for teams                    -- pending
-Add some sane limiting to history
-Add historical fetch for users
-Add testing for URI mapping

@@ -26,4 +26,23 @@ class TeamServiceSpec extends Specification {
         mockTeam.verify() == null
     }
 
+    def 'show'() {
+
+        given:
+        Long teamId = 0
+        Team fakeResult = new Team()
+
+        and:
+        def mockTeam = mockFor(Team)
+
+        mockTeam.demand.static.get(1) { Long teamIdArg ->
+            if (teamIdArg != teamId) throw new Exception("Failed test")
+            fakeResult
+        }
+
+        expect:
+        service.get(teamId) == fakeResult
+        mockTeam.verify() == null
+    }
+
 }
