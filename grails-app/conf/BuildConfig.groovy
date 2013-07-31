@@ -47,7 +47,7 @@ grails.project.dependency.resolution = {
              "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion",
              "org.spockframework:spock-grails-support:0.7-groovy-2.0",
              "org.gebish:geb-spock:$gebVersion",
-             'com.popcornteam:restclient:1.0.130113.1729'
+             'com.popcornteam:restclient:1.0.130719.1658'
 
     }
 
