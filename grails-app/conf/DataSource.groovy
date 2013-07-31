@@ -27,7 +27,7 @@ environments {
 
             readOnly = true
 
-            uri = new URI(System.env.DATABASE_URL ?: "postgres://stats:stats@cvps2.agileview.co.uk/stats")
+            uri = new URI(System.env.DATABASE_URL ?: "postgres://stats:stats@qp2.agileview.co.uk/stats")
 
             url = "jdbc:postgresql://" + uri.host + uri.path
             username = uri.userInfo.split(":")[0]
